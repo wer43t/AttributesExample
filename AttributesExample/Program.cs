@@ -7,40 +7,35 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AttributesExample
 {
-    class Program
+    static public class Program
     {
         static void Main(string[] args)
         {
-            Person person = new Person("toma", 0);
+            Person person = new Person("toma", 33);
             Validate(person);
         }
 
-        private static void Validate(Person person)
+        public static List<ValidationResult> Validate(Person person)
         {
             var results = new List<ValidationResult>();
             var context = new ValidationContext(person);
-            if (!Validator.TryValidateObject(person, context, results, true))
-            {
-                foreach (var error in results)
-                {
-                    Console.WriteLine(error.ErrorMessage);
-                }
-            }
-            else
-                Console.WriteLine($"{person.Name} прошел валидацию");
+            Validator.TryValidateObject(person, context, results, true);
+            return results;
         }
     }
 
 
 
-    class Person
+    public class Person
     {
         [Required(ErrorMessage = "Не указано имя пользователя")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Не допустимая длина имени")]
-        [MyName]
+        [Display(Name = "Имя")]
         public string Name { get; set; }
         [Required]
+        [MyName]
         [Range(1, 100, ErrorMessage = "Недопустимый возраст")]
+        [Display(Name = "Возраст")]
         public int Age { get; set; }
         public Person(string name, int age)
         {
@@ -53,8 +48,8 @@ namespace AttributesExample
     {
         public override bool IsValid(object value)
         {
-            Person person = value as Person;
-            if (person.Age == 33)
+            int age = Convert.ToInt32(value);
+            if (age == 33)
             {
                 this.ErrorMessage = "Возраст пользователя не должен быть равен 33";
                 return false;
