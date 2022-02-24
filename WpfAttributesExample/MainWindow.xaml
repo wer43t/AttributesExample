@@ -27,9 +27,9 @@
             <RowDefinition Height="271*"/>
             <RowDefinition Height="74*"/>
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.Column="1" Grid.Row="0">
+        <ScrollViewer Grid.Column="1" Grid.Row="0" Visibility="Collapsed" x:Name="svErrors">
             <StackPanel x:Name="spErrors" Background="#FFCCCC" Grid.Column="1" Grid.Row="0">
-                <ListView x:Name="lvProperties" Background="#FFCCCC" DataContext="{Binding}" ItemsSource="{Binding results}" Visibility="Collapsed">
+                <ListView x:Name="lvProperties" Background="#FFCCCC" DataContext="{Binding}" ItemsSource="{Binding results}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>

@@ -34,7 +34,11 @@ namespace WpfAttributesExample
             lvProperties.ItemsSource = results;
             if(lvProperties.Items.Count != 0)
             {
-                lvProperties.Visibility = Visibility.Visible;
+                svErrors.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                svErrors.Visibility = Visibility.Collapsed;
             }
         }
     }
