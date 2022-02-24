@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Column="1" Grid.Row="0" Visibility="Collapsed" x:Name="svErrors">
             <StackPanel x:Name="spErrors" Background="#FFCCCC" Grid.Column="1" Grid.Row="0">
-                <ListView x:Name="lvProperties" Background="#FFCCCC" DataContext="{Binding}" ItemsSource="{Binding results}">
+                <ListView x:Name="lvProperties" Background="#FFCCCC" DataContext="{Binding}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
